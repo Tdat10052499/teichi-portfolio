@@ -107,8 +107,9 @@ export default function MayMascot() {
     const context = canvas.getContext("2d", { alpha: true });
     if (!context) return;
 
+    const basePath = process.env.NODE_ENV === 'production' ? '/teichi-portfolio' : '';
     const atlas = new Image();
-    atlas.src = "/assets/may-sprite.png";
+    atlas.src = `${basePath}/assets/may-sprite.png`;
     let animationFrameId: number;
     let previous = performance.now();
 
