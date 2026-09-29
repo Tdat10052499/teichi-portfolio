@@ -1,12 +1,17 @@
-# Teichi D. Portfolio
+# Hồ Du tuấn Đạt (Teichi D.) — Portfolio
 
-A professional portfolio focusing on Web3, Blockchain, and Creative Engineering, built with Next.js, TypeScript, GSAP, and Lenis.
+Hello! I'm **Hồ Du tuấn Đạt** (Teichi D.), an IT professional and Creative Engineer from **Van Lang University**. I specialize in Web3, Blockchain, and building thoughtful, interactive web experiences. I believe good technology should feel like magic and work like clockwork — connecting the dots between complex infrastructure and the people using it.
 
-## Features
+This repository contains my personal portfolio website, designed to showcase my technical capabilities, design thinking, research activities, and hackathon experiences.
+
+## Technical Architecture
+
+The portfolio is built with performance, smooth interactions, and scalability in mind:
 
 - **Next.js App Router**: Fast, optimized server-first architecture.
 - **GSAP & Lenis**: Smooth scrolling and fine-tuned scroll-based animations.
 - **Canvas 2D**: Highly optimized pixel art companion (Mây) and interactive background field.
+- **TypeScript**: Ensuring type safety and code maintainability.
 - **Responsive & Accessible**: Works perfectly across devices while respecting system preferences like reduced motion.
 
 ## Getting Started
@@ -47,14 +52,8 @@ npm run start
 
 The portfolio data is separated from the UI presentation to make content updates easy. 
 
-To edit your projects, skills, or other portfolio information, open `src/data/portfolio.ts` and modify the structures there. The UI components will automatically reflect your changes.
+To edit projects, skills, or other portfolio information, open `src/data/portfolio.ts` and modify the structures there. The UI components will automatically reflect your changes.
 
 ## Deployment
 
 This Next.js app is pre-configured and ready to be deployed on platforms like Vercel. Simply import your repository into Vercel and it will automatically detect the settings and deploy.
-
-## Acknowledgements
-
-- Built with [Next.js](https://nextjs.org/)
-- Animation powered by [GSAP](https://gsap.com/)
-- Smooth scrolling by [Lenis](https://lenis.darkroom.engineering/)

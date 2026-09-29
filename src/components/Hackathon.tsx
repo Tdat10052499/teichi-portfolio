@@ -3,6 +3,7 @@
 import React, { useEffect, useRef } from "react";
 import { useMotion } from "./MotionProvider";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export default function Hackathon() {
   const { setChapter } = useMotion();
@@ -22,6 +23,7 @@ export default function Hackathon() {
   }, [setChapter]);
 
   useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
     const ctx = gsap.context(() => {
       gsap.from(sectionRef.current?.querySelectorAll(".hack-details") || [], {
         y: 35,
@@ -35,7 +37,7 @@ export default function Hackathon() {
       gsap.fromTo(
         ".hack-pass",
         { rotation: 6, y: 40 },
-        { rotation: -3, y: -25, ease: "none", scrollTrigger: { trigger: ".hackathon", start: "top bottom", end: "bottom top", scrub: 1 } }
+        { rotation: -3, y: -25, ease: "none", scrollTrigger: { trigger: sectionRef.current, start: "top bottom", end: "bottom top", scrub: 1 } }
       );
     }, sectionRef);
 

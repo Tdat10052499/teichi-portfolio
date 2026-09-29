@@ -3,6 +3,7 @@
 import React, { useEffect, useRef } from "react";
 import { useMotion } from "./MotionProvider";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export default function Research() {
   const { setChapter } = useMotion();
@@ -22,6 +23,7 @@ export default function Research() {
   }, [setChapter]);
 
   useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
     const ctx = gsap.context(() => {
       const title = sectionRef.current?.querySelector("h2");
       if (title) {
@@ -46,7 +48,7 @@ export default function Research() {
       gsap.fromTo(
         ".paper",
         { rotation: -7, y: 45 },
-        { rotation: 2, y: -25, ease: "none", scrollTrigger: { trigger: ".research", start: "top bottom", end: "bottom top", scrub: 1 } }
+        { rotation: 2, y: -25, ease: "none", scrollTrigger: { trigger: sectionRef.current, start: "top bottom", end: "bottom top", scrub: 1 } }
       );
     }, sectionRef);
 
