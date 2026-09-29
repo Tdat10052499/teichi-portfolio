@@ -236,8 +236,10 @@ export default function MayMascot() {
   useEffect(() => {
     const handleEnter = (e: Event) => {
       const target = e.target as Element;
-      if (target.matches('.project, .hack-pass')) animState.current.hoverContext = 'coding';
-      else if (target.matches('.paper-wrap')) animState.current.hoverContext = 'thinking';
+      if (target && typeof target.matches === 'function') {
+        if (target.matches('.project, .hack-pass')) animState.current.hoverContext = 'coding';
+        else if (target.matches('.paper-wrap')) animState.current.hoverContext = 'thinking';
+      }
     };
     const handleLeave = () => { animState.current.hoverContext = null; };
 

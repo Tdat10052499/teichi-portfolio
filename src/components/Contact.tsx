@@ -3,6 +3,7 @@
 import React, { useEffect, useRef } from "react";
 import { useMotion } from "./MotionProvider";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export default function Contact() {
   const { setChapter } = useMotion();
@@ -23,6 +24,7 @@ export default function Contact() {
   }, [setChapter]);
 
   useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
     const ctx = gsap.context(() => {
       const title = sectionRef.current?.querySelector("h2");
       if (title) {

@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useMotion } from "./MotionProvider";
 import { studies } from "../data/portfolio";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export default function SelectedWork() {
   const { setChapter, motion } = useMotion();
@@ -25,6 +26,7 @@ export default function SelectedWork() {
   }, [setChapter]);
 
   useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
     const ctx = gsap.context(() => {
       const title = sectionRef.current?.querySelector("h2");
       if (title) {
