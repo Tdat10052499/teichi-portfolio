@@ -4,7 +4,11 @@ Sao chép nội dung bên dưới vào coding agent trong workspace chứa repos
 
 ---
 
-Hãy tiếp tục phát triển portfolio của Hồ Du tuấn Đạt — Teichi D. (Van Lang University) từ repository https://github.com/Tdat10052499/teichi-portfolio. Trước khi chỉnh sửa, đọc README.md, NED_CASE_STUDY.md, mã nguồn dist/ và hướng dẫn AGENTS.md nếu có. Kiểm tra git status, bảo toàn thay đổi đang có. Thực hiện triển khai và kiểm thử, không chỉ đưa ra kế hoạch.
+Hãy tiếp tục phát triển portfolio của Hồ Du tuấn Đạt — Teichi D. (Van Lang University) từ repository https://github.com/Tdat10052499/teichi-portfolio. Kiểm tra git status, bảo toàn thay đổi đang có. Thực hiện triển khai và kiểm thử, không chỉ đưa ra kế hoạch.
+
+Nguồn bàn giao nằm ở nhánh `feat/ned-case-study-demo`: `dist/ned.html`, `dist/ned.css`, `dist/ned.js`, `dist/ned-motion.css`, `dist/ned-motion.js`, `dist/may-pixel.js`, `dist/assets/ned/`, sprite `dist/assets/may-sprite.png` và `NED_CASE_STUDY.md`. Fetch nhánh này và đọc/copy có chọn lọc bằng git show hoặc checkout phụ; không merge nguyên nhánh tĩnh vào main, không reset/ghi đè dự án Next.js hiện tại. Bản main đã kiểm tra tại commit `1a098b2` dùng Next.js với `src/app/`, `src/components/` và `src/data/portfolio.ts`; hãy kiểm tra lại HEAD thực tế trước khi làm.
+
+Đọc AGENTS.md trong workspace và tài liệu Next.js cục bộ mà file này yêu cầu. Đọc component hiện có, đặc biệt SelectedWork.tsx, Hackathon.tsx, MayMascot.tsx và MotionProvider.tsx; tái sử dụng cơ chế motion/mascot thay vì tạo hai hệ thống listener hoặc canvas trùng nhau.
 
 ## Mục tiêu và phạm vi
 
@@ -25,8 +29,9 @@ Giữ phong cách tối giản: nền #111210, chữ #f2f3e9, điểm nhấn lim
 
 Dùng route chuẩn cho case study mới là `/projects/ned-wallet`, trang chủ là `/`.
 
-1. Tạo `app/projects/ned-wallet/page.tsx` hoặc đường dẫn tương đương theo cấu trúc app hiện có; trang chủ dùng `app/page.tsx`.
+1. Với cấu trúc main hiện tại, tạo `src/app/projects/ned-wallet/page.tsx`; trang chủ là `src/app/page.tsx`. Chỉ dùng `app/` ở root nếu workspace thực tế đã đổi cấu trúc.
 2. Chuyển mọi link `ned.html` ở work card, modal case study và khối giới thiệu N.E.D thành `/projects/ned-wallet`.
+   Kiểm tra cả `src/data/portfolio.ts`, `src/components/SelectedWork.tsx` và `src/components/Hackathon.tsx`: cập nhật href/action của dự án N.E.D để mở trang mới. Nếu card đang mở modal chung, thêm CTA rõ ràng hoặc chuyển riêng N.E.D sang route mới; giữ hành vi hai concept còn lại.
 3. Chuyển `index.html`, `index.html#work`, `index.html#contact` thành `/`, `/#work`, `/#contact`. Điều hướng chương trên case study phải trỏ tới ID của chính trang đó; không chuyển nhầm về section trên homepage.
 4. Giữ anchor `#story` và `#demo`; đặt ID ổn định cho design, status, engineering và next-steps. Sidebar chương và nút “Next chapter” phải dùng cùng danh sách ID đó.
 5. Chuyển `dist/assets/ned/*` vào `public/assets/ned/`, sprite Mây vào `public/assets/may-sprite.png`, cùng các tài nguyên khác đang được dùng. Sửa đường dẫn ảnh từ `assets/...` hoặc `./assets/...` thành URL asset đúng từ public; không để trình duyệt tìm ảnh dưới `/projects/ned-wallet/assets/`.
