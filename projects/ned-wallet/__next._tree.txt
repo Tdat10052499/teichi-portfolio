@@ -4,4 +4,4 @@
 :HL["/teichi-portfolio/_next/static/chunks/1fg17tu23gynt.css","style"]
 :HL["/teichi-portfolio/assets/ned/design-xstocks.webp","image"]
 :HL["/teichi-portfolio/assets/ned/design-home.webp","image"]
-0:{"tree":{"name":"","param":null,"prefetchHints":4176,"slots":{"children":{"name":"projects","param":null,"prefetchHints":4192,"slots":{"children":{"name":"ned-wallet","param":null,"prefetchHints":4192,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":4256,"slots":null}}}}}}},"staleTime":300,"buildId":"6rVEljD9wRMo0JS3vA8yv"}
+0:{"tree":{"name":"","param":null,"prefetchHints":4176,"slots":{"children":{"name":"projects","param":null,"prefetchHints":4192,"slots":{"children":{"name":"ned-wallet","param":null,"prefetchHints":4192,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":4256,"slots":null}}}}}}},"staleTime":300,"buildId":"egqsFR9rfNBOVABs8rewX"}
