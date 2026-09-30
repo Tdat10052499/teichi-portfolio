@@ -145,7 +145,13 @@ export default function MayCompanion({ mode, mood, transientUntil, chapter }: Ma
     };
 
     const wake = () => { animState.current.lastInput = performance.now(); };
-    const handlePointerMove = (e: PointerEvent) => { wake(); animState.current.pointerX = (e.clientX / window.innerWidth) * 2 - 1; };
+    const handlePointerMove = (e: PointerEvent) => {
+      wake();
+      if (!canvas) return;
+      const rect = canvas.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      animState.current.pointerX = (e.clientX - centerX) / (rect.width / 2);
+    };
     
     window.addEventListener("pointermove", handlePointerMove, { passive: true });
     window.addEventListener("pointerdown", wake, { passive: true });

@@ -62,7 +62,7 @@ button:disabled {
   display: flex;
   align-items: center;
   gap: 32px;
-  padding: 0 6vw;
+  padding: 0 max(clamp(20px, 4vw, 96px), calc((100% - 1760px) / 2));
   border-bottom: 1px solid var(--line);
 }
 .brand {
@@ -78,7 +78,7 @@ button:disabled {
   padding: 10px 16px;
 }
 main > section {
-  padding: 100px 7vw;
+  padding: 100px max(clamp(20px, 4vw, 96px), calc((100% - 1760px) / 2));
   border-bottom: 1px solid var(--line);
 }
 .case-hero {
@@ -136,6 +136,7 @@ em {
   color: var(--lime);
 }
 p {
+  max-width: 70ch;
   line-height: 1.7;
   color: var(--muted);
 }
@@ -688,7 +689,7 @@ dialog h2 {
 }
 @media (max-width: 900px) {
   main > section {
-    padding: 65px 6vw;
+    padding: 65px max(clamp(20px, 4vw, 96px), calc((100% - 1760px) / 2));
   }
   .case-hero {
     grid-template-columns: 1fr;

@@ -14,6 +14,9 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: 90px;
 }
+p {
+  max-width: 70ch;
+}
 body {
   margin: 0;
   background: var(--bg);
@@ -45,7 +48,8 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 0 5%;
+  margin: 0;
+  padding-inline: max(clamp(20px, 4vw, 96px), calc((100% - 1760px) / 2));
   border-bottom: 1px solid var(--line);
   position: relative;
   z-index: 3;
@@ -97,7 +101,7 @@ nav span {
 .hero {
   position: relative;
   min-height: 740px;
-  padding: 43px 5% 0;
+  padding: 43px max(clamp(20px, 4vw, 96px), calc((100% - 1760px) / 2)) 0;
   overflow: hidden;
 }
 .eyebrow {
@@ -116,6 +120,7 @@ nav span {
   pointer-events: none;
   margin-top: 72px;
   width: 75%;
+  max-width: 900px;
 }
 .hero-copy a {
   pointer-events: auto;
@@ -176,9 +181,9 @@ h1 {
 }
 .mascot-stage {
   position: absolute;
-  width: 47%;
+  width: clamp(350px, 47%, 700px);
   height: 580px;
-  right: 1%;
+  right: max(1%, calc((100% - 1760px) / 2));
   top: 62px;
   isolation: isolate;
 }
@@ -302,7 +307,7 @@ h1 {
   margin: 0 40px;
 }
 .section {
-  padding: 110px 5%;
+  padding: 110px max(clamp(20px, 4vw, 96px), calc((100% - 1760px) / 2));
 }
 .section-heading {
   display: flex;
@@ -496,7 +501,7 @@ h2 em {
 }
 .network {
   position: absolute;
-  right: 7%;
+  right: max(7%, calc((100% - 1760px) / 2));
   top: 5%;
   width: 300px;
   height: 300px;
@@ -620,7 +625,7 @@ h2 em {
 }
 .contact-star {
   position: absolute;
-  right: 12%;
+  right: max(12%, calc((100% - 1760px) / 2));
   top: 27%;
   font-size: 230px;
   font-weight: 400;
@@ -635,8 +640,9 @@ footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 0 5%;
-  padding: 35px 0;
+  margin: 0;
+  padding-inline: max(clamp(20px, 4vw, 96px), calc((100% - 1760px) / 2));
+  padding: 35px max(clamp(20px, 4vw, 96px), calc((100% - 1760px) / 2));
   gap: 25px;
 }
 footer span,
@@ -726,22 +732,14 @@ body.motion-off *:before {
     transform: translateX(-35%);
   }
 }
-@media (min-width: 1600px) {
-  main,
-  header,
-  footer {
-    max-width: 1600px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
+
 @media (max-width: 1000px) {
   .hero-copy {
     width: 90%;
   }
   .mascot-stage {
     right: -7%;
-    width: 52%;
+    width: clamp(350px, 52%, 700px);
     top: 80px;
   }
   .description {
@@ -973,7 +971,7 @@ body.motion-off *:before {
   header {
     flex-wrap: wrap;
     height: 105px;
-    padding: 12px 0;
+    padding: 12px max(clamp(20px, 4vw, 96px), calc((100% - 1760px) / 2));
   }
   .motion-toggle {
     display: block;
@@ -1015,6 +1013,7 @@ nav {
 }
 .hero-copy {
   width: 78%;
+  max-width: 900px;
 }
 .hero .intro {
   color: #d7ddca;
@@ -1594,7 +1593,7 @@ nav {
     left: 5px;
   }
   .mascot-stage {
-    width: 47%;
+    width: clamp(350px, 47%, 700px);
     right: -1%;
     top: 80px;
   }
@@ -1632,7 +1631,7 @@ nav {
     min-height: 108px;
     flex-wrap: wrap;
     gap: 8px 15px;
-    padding: 17px 0;
+    padding: 17px max(clamp(20px, 4vw, 96px), calc((100% - 1760px) / 2));
   }
   .wordmark {
     font-size: 31px;

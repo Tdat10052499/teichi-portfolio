@@ -202,7 +202,16 @@ export default function MayMascot() {
     };
 
     const wake = () => { animState.current.lastInput = performance.now(); };
-    const handlePointerMove = (e: PointerEvent) => { wake(); animState.current.pointerX = (e.clientX / window.innerWidth) * 2 - 1; };
+    const handlePointerMove = (e: PointerEvent) => {
+      wake();
+      if (!canvas) return;
+      const rect = canvas.getBoundingClientRect();
+      // Center of the canvas is rect.left + rect.width / 2
+      // We want pointerX to be -1 at the left edge and 1 at the right edge
+      const centerX = rect.left + rect.width / 2;
+      // Normalizing by rect.width / 2
+      animState.current.pointerX = (e.clientX - centerX) / (rect.width / 2);
+    };
     
     window.addEventListener("pointermove", handlePointerMove, { passive: true });
     window.addEventListener("pointerdown", wake, { passive: true });
