@@ -7,6 +7,7 @@ export interface ProjectData {
   approach: string;
   stack: string[];
   note: string;
+  link?: string;
 }
 
 export const studies: ProjectData[] = [
@@ -19,6 +20,7 @@ export const studies: ProjectData[] = [
     approach: "I participated as project owner of N.E.D Wallet. This portfolio records the project, its product direction, and my role. Product screenshots, implementation details, and a demo can be added as the project story develops.",
     stack: ["N.E.D Wallet", "Project owner", "UniHackfest 2026"],
     note: "Hackathon project · Product availability and investment services are not offered by this portfolio.",
+    link: "/projects/ned-wallet"
   },
   {
     id: "origin",

@@ -51,12 +51,12 @@ export default function Hackathon() {
         <div>
           <span className="tag">PROJECT OWNER / N.E.D WALLET</span>
           <h2>UniHackfest<br /><em>2026.</em></h2>
-          <p className="hack-lead">Hold dollars.<br />Invest in US stocks.</p>
+          <p className="hack-lead">Hold dollars.<br />Explore tokenized stocks.</p>
           <p>I joined UniHackfest 2026 as project owner of N.E.D Wallet, bringing a focused financial product idea into the hackathon.</p>
           <div className="hack-details">
             <details open>
               <summary>The project <span>01</span></summary>
-              <p>N.E.D Wallet — “Hold dollars. Invest in US stocks.” Built as our UniHackfest 2026 project.</p>
+              <p>N.E.D Wallet is a Solana wallet in development for UniHackfest 2026. Its USDC-first direction brings familiar money language to Web3.</p>
             </details>
             <details>
               <summary>My role <span>02</span></summary>
@@ -64,7 +64,7 @@ export default function Hackathon() {
             </details>
             <details>
               <summary>The idea <span>03</span></summary>
-              <p>A wallet concept bringing dollar holdings and US stock investing into one product experience.</p>
+              <p>An Expo / React Native app with Devnet USDC transfers and simulated xStocks trading. Earn and money-planning experiences remain in the design roadmap.</p>
             </details>
           </div>
         </div>
