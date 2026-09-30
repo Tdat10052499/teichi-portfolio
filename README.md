@@ -53,3 +53,8 @@ Repository này là bản nguồn độc lập; không chứa thông tin đăng 
 ## Thư viện bên thứ ba
 
 Các tệp trong `dist/vendor/` giữ nguyên thông báo bản quyền gốc. Xem `THIRD_PARTY.md`. Không áp dụng giấy phép mới cho thư viện hoặc tài sản hình ảnh bên thứ ba.
+
+## N.E.D case study
+
+Mở /ned.html để xem case study và demo mua/bán bằng dữ liệu mẫu. Chi tiết nội dung, nguồn và kịch bản nằm trong NED_CASE_STUDY.md. Demo không kết nối ví, không gọi API giá và không lưu thông tin người dùng.
+

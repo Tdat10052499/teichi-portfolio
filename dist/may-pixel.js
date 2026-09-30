@@ -13,6 +13,7 @@ export async function initPixelMay({host,getMotion,getChapter,say}) {
   const canvas=document.createElement('canvas');canvas.className='may-pixel-canvas';canvas.setAttribute('aria-hidden','true');
   const context=canvas.getContext('2d',{alpha:true});host.replaceChildren(canvas);host.dataset.ready='true';host.dataset.renderer='2d';
   let width=0,height=0,mode='auto',current='',changedAt=performance.now(),lastInput=performance.now(),transientUntil=0,hoverContext=null;
+  let reactionMood='idle',reactionUntil=0;
   let frame=-1,lastPaint='',pointerX=0,look=0;
   const controls=[...document.querySelectorAll('[data-may-mode]')],select=document.querySelector('#may-mode-select');
   const resize=()=>{width=host.clientWidth;height=host.clientHeight;const ratio=Math.min(devicePixelRatio,2);canvas.width=Math.round(width*ratio);canvas.height=Math.round(height*ratio);context.setTransform(ratio,0,0,ratio,0,0);context.imageSmoothingEnabled=false;lastPaint='';};
@@ -27,9 +28,9 @@ export async function initPixelMay({host,getMotion,getChapter,say}) {
   for(const [selector,name] of [['.project','coding'],['.paper-wrap','thinking'],['.hack-pass','coding']]){
     document.querySelectorAll(selector).forEach(el=>{el.addEventListener('pointerenter',()=>hoverContext=name);el.addEventListener('pointerleave',()=>hoverContext=null);el.addEventListener('focusin',()=>hoverContext=name);el.addEventListener('focusout',()=>hoverContext=null);});
   }
-  function resolve(now){if(now<transientUntil)return 'happy';if(mode!=='auto')return mode;if(now-lastInput>=12000)return 'sleepy';if(document.activeElement?.matches('input,textarea'))return 'coding';if(hoverContext)return hoverContext;const chapter=getChapter();if(chapter==='research')return 'thinking';if(chapter==='work'||chapter==='hackathon')return 'coding';return 'idle';}
+  function resolve(now){if(now<reactionUntil)return reactionMood;if(now<transientUntil)return 'happy';if(mode!=='auto')return mode;if(now-lastInput>=12000)return 'sleepy';if(document.activeElement?.matches('input,textarea'))return 'coding';if(hoverContext)return hoverContext;const chapter=getChapter();if(chapter==='research')return 'thinking';if(chapter==='work'||chapter==='hackathon')return 'coding';return 'idle';}
   function frameAt(name,age,motion){if(!motion)return 0;if(name==='idle'){const p=age%4300;return p<3400?0:p<3730?1:p<3880?2:3;}const sequence=name==='thinking'?[0,0,1,1,2,2,3,3]:name==='sleepy'?[0,0,1,2,2,3,2,1]:[0,1,2,3];const fps=name==='happy'?7:name==='coding'?6:3;return sequence[Math.floor(age/1000*fps)%sequence.length];}
-  return {update(){
+  return {react(mood,message,duration=4000){if(!frames[mood])return;reactionMood=mood;reactionUntil=performance.now()+duration;say(message);},update(){
     const now=performance.now(),next=resolve(now),motion=getMotion();
     if(next!==current){current=next;changedAt=now;host.dataset.mood=current;host.setAttribute('aria-label',descriptions[current]+' Tap or press Enter to greet him.');}
     frame=frameAt(current,now-changedAt,motion);host.dataset.frame=String(frame);host.dataset.mode=mode;
