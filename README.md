@@ -58,3 +58,8 @@ Các tệp trong `dist/vendor/` giữ nguyên thông báo bản quyền gốc. X
 
 Mở /ned.html để xem case study và demo mua/bán bằng dữ liệu mẫu. Chi tiết nội dung, nguồn và kịch bản nằm trong NED_CASE_STUDY.md. Demo không kết nối ví, không gọi API giá và không lưu thông tin người dùng.
 
+
+## Tiếp tục trong workspace
+
+Đọc WORKSPACE_PROMPT.md để tích hợp hoặc chuyển sang Next.js. Route đích của case study là /projects/ned-wallet; bản tĩnh hiện tại vẫn chạy tại /ned.html. Prompt có bảng yêu cầu sửa liên kết, asset public, anchor và tương thích link cũ.
+
