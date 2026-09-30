@@ -35,3 +35,7 @@ Mây: coding khi khám phá/nhập liệu, thinking ở review, happy khi hoàn 
 ## Chạy thử
 
 `npm start`, rồi mở http://localhost:4173/ned.html. Không cần backend, khóa API hoặc kết nối ví. Deploy toàn bộ `dist/` để giữ liên kết về portfolio.
+
+## Scroll & Mây update
+Native scrolling includes reveal transitions, layered hero motion, reading progress and chapter navigation. Mây docks outside the demo guide slot, responds to each chapter and to keyboard focus/hover on content cards. Controls support greeting, chapter notes, next chapter and minimizing. On small screens the dock starts minimized. Motion off and reduced-motion disable decorative movement.
+

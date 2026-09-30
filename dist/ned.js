@@ -1,10 +1,11 @@
 import {initPixelMay} from './may-pixel.js';
+import {initCaseMotion} from './ned-motion.js';
 const $=s=>document.querySelector(s),screen=$('#demo-screen');
 const assets={AAPLx:{name:'Apple token',price:243.42,icon:'A'},NVDAx:{name:'NVIDIA token',price:162.15,icon:'N'}};
 const money=n=>new Intl.NumberFormat('en-US',{style:'currency',currency:'USD'}).format(n);
 let cash=75000,holdings={AAPLx:.5,NVDAx:.6},symbol='AAPLx',side='buy',stage='home',amount='50',receipt=null,may;
 const reduced=matchMedia('(prefers-reduced-motion: reduce)');let motion=!reduced.matches;
-function syncMotion(){document.body.classList.toggle('motion-off',!motion);$('#motion').textContent=`Motion ${motion?'on':'off'}`;$('#motion').setAttribute('aria-pressed',String(!motion));}syncMotion();
+function syncMotion(){document.body.classList.toggle('motion-off',!motion);$('#motion').textContent=`Motion ${motion?'on':'off'}`;$('#motion').setAttribute('aria-pressed',String(!motion));window.dispatchEvent(new Event('ned-motion-change'));}syncMotion();
 $('#motion').onclick=()=>{motion=!motion;syncMotion();};reduced.addEventListener('change',e=>{motion=!e.matches;syncMotion();});
 function react(mood,message){$('#may-message').textContent=message;may?.react(mood,message,6000);}
 initPixelMay({host:$('#mascot'),getMotion:()=>motion,getChapter:()=>stage==='review'?'research':'work',say:t=>$('#may-message').textContent=t}).then(m=>{may=m;let raf;const tick=()=>{if(!document.hidden)m.update();raf=requestAnimationFrame(tick);};tick();window.addEventListener('pagehide',()=>cancelAnimationFrame(raf),{once:true});}).catch(()=>{$('#mascot').textContent='☁ Mây';});
@@ -28,3 +29,4 @@ else if(action==='review'&&!quote().error)go('review');
 else if(action==='confirm'&&stage==='review'&&$('#ack').checked){const q=quote();if(q.error)return;receipt={...q,side,symbol};if(side==='buy'){cash-=q.cents;holdings[symbol]+=q.quantity;}else{cash+=q.cents-q.fee;holdings[symbol]=Math.max(0,holdings[symbol]-q.quantity);}go('success');}
 else if(action==='try-sell'){side='sell';amount=(Math.floor(maxCents()/2)/100).toFixed(2);go('amount');}});
 $('#reset-demo').onclick=()=>$('#reset-dialog').showModal();$('#cancel-reset').onclick=()=>$('#reset-dialog').close();$('#confirm-reset').onclick=()=>{cash=75000;holdings={AAPLx:.5,NVDAx:.6};symbol='AAPLx';side='buy';amount='50';receipt=null;$('#reset-dialog').close();go('home');};render();
+initCaseMotion({getMotion:()=>motion,react});
