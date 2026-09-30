@@ -1,12 +1,26 @@
 {
-  "name": "teichi-portfolio",
-  "version": "1.0.0",
+  "name": "next-temp",
+  "version": "0.1.0",
   "private": true,
-  "description": "Personal portfolio of Teichi D. with an interactive field and Mây pixel companion",
-  "type": "module",
   "scripts": {
-    "start": "node scripts/serve.mjs",
-    "dev": "node scripts/serve.mjs"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
   },
-  "engines": { "node": ">=20" }
+  "dependencies": {
+    "gsap": "^3.15.0",
+    "lenis": "^1.3.26",
+    "next": "16.3.7",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.3.7",
+    "typescript": "^5"
+  }
 }
