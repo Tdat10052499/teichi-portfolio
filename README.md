@@ -57,3 +57,10 @@ To edit projects, skills, or other portfolio information, open `src/data/portfol
 ## Deployment
 
 This Next.js app is pre-configured and ready to be deployed on platforms like Vercel. Simply import your repository into Vercel and it will automatically detect the settings and deploy.
+
+## N.E.D handoff
+
+The complete interactive reference is isolated in `handoff/ned-reference/`. It does not replace this Next.js application. See [WORKSPACE_PROMPT.md](WORKSPACE_PROMPT.md) for integration into `/projects/ned-wallet` and [NED_CASE_STUDY.md](NED_CASE_STUDY.md) for product context.
+
+Preview the reference: `cd handoff/ned-reference` then `npm start` and open `http://localhost:4173/ned.html`. The new case study has not yet been integrated into the Next.js routes.
+
