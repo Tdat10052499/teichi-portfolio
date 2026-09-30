@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useMotion } from "./MotionProvider";
 import { studies } from "../data/portfolio";
 import { gsap } from "gsap";
+import Link from "next/link";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export default function SelectedWork() {
@@ -91,7 +92,7 @@ export default function SelectedWork() {
           <p>A hackathon project and concept explorations<br />in ownership, utility, and the internet.</p>
         </div>
         <div className="projects">
-          <button className="project" onClick={() => handleOpen(0)}>
+          <Link href="/projects/ned-wallet" className="project">
             <div className="project-art vault">
               <div className="art-label">N.E.D / UNIHACKFEST 2026</div>
               <div className="vault-visual">
@@ -108,7 +109,7 @@ export default function SelectedWork() {
               <span>UniHackfest 2026 · Project owner</span>
               <b>01</b>
             </div>
-          </button>
+          </Link>
           <button className="project" onClick={() => handleOpen(1)}>
             <div className="project-art prism">
               <div className="art-label">PROVENANCE IS EVERYTHING.</div>
@@ -140,6 +141,15 @@ export default function SelectedWork() {
         </div>
       </section>
 
+      <aside className="ned-feature">
+        <div>
+          <p className="eyebrow">N.E.D WALLET / IN DEVELOPMENT</p>
+          <h3>From product direction to a demo you can try.</h3>
+          <p>Explore the design, implementation status and a sample buy/sell walkthrough with Mây.</p>
+        </div>
+        <Link href="/projects/ned-wallet">Explore the full case study ↗</Link>
+      </aside>
+
       <dialog 
         id="case-dialog" 
         ref={dialogRef}
@@ -162,6 +172,11 @@ export default function SelectedWork() {
             <div className="stack" id="case-stack">
               {activeData.stack.map((s, i) => <span key={i}>{s}</span>)}
             </div>
+            {activeData.link && (
+              <Link id="ned-case-link" href={activeData.link}>
+                Explore the case study & interactive demo ↗
+              </Link>
+            )}
             <p className="case-note">{activeData.note}</p>
           </>
         )}

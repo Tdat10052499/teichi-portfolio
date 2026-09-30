@@ -1,8 +1,7 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { useMotion } from "./MotionProvider";
-import { gsap } from "gsap";
 
 const frames = {
   idle: [[79, 15, 179, 297], [343, 17, 179, 295], [610, 17, 177, 295], [873, 16, 179, 296]],
@@ -20,34 +19,24 @@ const descriptions = {
   coding: "Mây sits cross-legged and types on his laptop.",
 };
 
-const messages = {
-  auto: "I’ll keep you company.",
-  happy: "A little joy goes a long way!",
-  thinking: "Hmm… let’s think this through.",
-  sleepy: "Just resting my eyes…",
-  coding: "One idea. One line at a time.",
-};
+interface MayCompanionProps {
+  mode: string;
+  mood: string;
+  transientUntil: number;
+  chapter: string;
+}
 
-export default function MayMascot() {
-  const { motion, chapter } = useMotion();
+export default function MayCompanion({ mode, mood, transientUntil, chapter }: MayCompanionProps) {
+  const { motion } = useMotion();
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const shellRef = useRef<HTMLDivElement>(null);
-  
-  const [speechText, setSpeechText] = useState("Xin chào! I’m Mây. Tap to say hello.");
-  const [mode, setMode] = useState("auto");
-  const [docked, setDocked] = useState(false);
-  const [mood, setMood] = useState("idle");
-  const speechTimeoutRef = useRef<NodeJS.Timeout>(null);
 
-  // Animation refs to avoid frequent state updates causing re-renders
   const animState = useRef({
     width: 0,
     height: 0,
     current: "",
     changedAt: performance.now(),
     lastInput: performance.now(),
-    transientUntil: 0,
     hoverContext: null as string | null,
     frame: -1,
     lastPaint: "",
@@ -55,51 +44,6 @@ export default function MayMascot() {
     look: 0,
     elapsed: 0,
   });
-
-  const say = (text: string) => {
-    setSpeechText(text);
-    if (speechTimeoutRef.current) clearTimeout(speechTimeoutRef.current);
-    speechTimeoutRef.current = setTimeout(() => {
-      setSpeechText(animState.current.current === "sleepy" ? "Just resting my eyes…" : (docked ? "Still here. Still curious." : "Xin chào! I’m Mây. Tap to say hello."));
-    }, 4600);
-  };
-
-  useEffect(() => {
-    // Docking logic
-    const handleScroll = () => {
-      const hero = document.querySelector(".hero");
-      if (!hero) return;
-      const isDocked = hero.getBoundingClientRect().bottom < 140;
-      
-      if (isDocked !== docked) {
-        setDocked(isDocked);
-        const shell = shellRef.current;
-        if (!shell) return;
-        
-        gsap.killTweensOf(shell);
-        gsap.set(shell, { clearProps: "transform" });
-        const before = shell.getBoundingClientRect();
-        
-        // Temporarily apply/remove classes to calculate after rect
-        shell.classList.toggle("docked", isDocked);
-        const parent = isDocked ? document.body : document.querySelector(".mascot-stage");
-        if (parent) parent.appendChild(shell);
-        
-        const after = shell.getBoundingClientRect();
-        
-        if (motion) {
-          gsap.fromTo(
-            shell,
-            { x: before.left - after.left, y: before.top - after.top, scaleX: before.width / after.width, scaleY: before.height / after.height, transformOrigin: "top left" },
-            { x: 0, y: 0, scaleX: 1, scaleY: 1, duration: 0.85, ease: "power3.inOut", onComplete: () => gsap.set(shell, { clearProps: "transform,transformOrigin" }) }
-          );
-        }
-      }
-    };
-    
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [docked, motion]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -144,7 +88,7 @@ export default function MayMascot() {
     };
 
     const resolve = (now: number) => {
-      if (now < animState.current.transientUntil) return "happy";
+      if (now < transientUntil) return mood;
       if (mode !== "auto") return mode;
       if (now - animState.current.lastInput >= 12000) return "sleepy";
       if (document.activeElement?.matches("input,textarea")) return "coding";
@@ -172,7 +116,6 @@ export default function MayMascot() {
       if (next !== animState.current.current) {
         animState.current.current = next;
         animState.current.changedAt = now;
-        setMood(next);
       }
       
       const frameIndex = frameAt(animState.current.current, now - animState.current.changedAt);
@@ -217,29 +160,14 @@ export default function MayMascot() {
       window.removeEventListener("keydown", wake);
       window.removeEventListener("scroll", wake);
     };
-  }, [motion, chapter, mode]);
+  }, [motion, chapter, mode, mood, transientUntil]);
 
-  const handleChoose = (value: string) => {
-    setMode(value);
-    animState.current.transientUntil = 0;
-    animState.current.lastInput = performance.now();
-    animState.current.changedAt = performance.now();
-    animState.current.lastPaint = "";
-    say((messages as any)[value]);
-  };
-
-  const handleGreet = () => {
-    animState.current.transientUntil = performance.now() + 2500;
-    say("Xin chào! That made my day.");
-  };
-
-  // Provide hover context globally for other elements to trigger
   useEffect(() => {
     const handleEnter = (e: Event) => {
       const target = e.target as Element;
       if (target && typeof target.matches === 'function') {
-        if (target.matches('.project, .hack-pass')) animState.current.hoverContext = 'coding';
-        else if (target.matches('.paper-wrap')) animState.current.hoverContext = 'thinking';
+        if (target.matches('.project, .hack-pass, [data-action]')) animState.current.hoverContext = 'coding';
+        else if (target.matches('.paper-wrap, input, textarea')) animState.current.hoverContext = 'thinking';
       }
     };
     const handleLeave = () => { animState.current.hoverContext = null; };
@@ -258,53 +186,14 @@ export default function MayMascot() {
   }, []);
 
   return (
-    <div className={`mascot-shell ${docked ? 'docked' : ''}`} id="mascot-shell" ref={shellRef}>
-      <div className="orbit orbit-one"></div>
-      <div className="orbit orbit-two"></div>
-      
-      <div 
-        id="mascot" 
-        ref={containerRef}
-        role="button" 
-        tabIndex={0} 
-        aria-label={`${(descriptions as any)[mood] || descriptions.idle} Tap or press Enter to greet him.`}
-        onClick={handleGreet}
-        onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleGreet(); } }}
-      >
-        <canvas ref={canvasRef} className="may-pixel-canvas" aria-hidden="true" />
-      </div>
-      
-      <div className="stage-top">MEET MÂY / PIXEL COMPANION</div>
-      <div className="speech" role="status">{speechText}</div>
-      
-      <div className="may-controls" role="group" aria-label="Mây expressions">
-        {Object.keys(messages).map(m => (
-          <button 
-            key={m} 
-            data-may-mode={m} 
-            aria-pressed={mode === m}
-            onClick={() => handleChoose(m)}
-          >
-            {m === 'auto' ? 'Auto' : m === 'thinking' ? 'Think' : m === 'coding' ? 'Code' : m === 'sleepy' ? 'Sleep' : 'Happy'}
-          </button>
-        ))}
-      </div>
-      
-      <label className="may-compact-control">
-        <span>MÂY</span>
-        <select value={mode} onChange={(e) => handleChoose(e.target.value)} aria-label="Mây expression">
-          <option value="auto">Auto</option>
-          <option value="happy">Happy</option>
-          <option value="thinking">Thinking</option>
-          <option value="coding">Coding</option>
-          <option value="sleepy">Sleepy</option>
-        </select>
-      </label>
-      
-      <span className="may-label">MÂY <small>A LITTLE PIXEL PERSONALITY</small></span>
-      <span className="coordinate">
-        X: <b id="coord-x">0.00</b> &nbsp; Y: <b id="coord-y">0.00</b>
-      </span>
+    <div 
+      id="mascot" 
+      ref={containerRef}
+      role="button" 
+      tabIndex={0} 
+      aria-label="Mây, your pixel guide. Tap to say hello."
+    >
+      <canvas ref={canvasRef} className="may-pixel-canvas" aria-hidden="true" />
     </div>
   );
 }
