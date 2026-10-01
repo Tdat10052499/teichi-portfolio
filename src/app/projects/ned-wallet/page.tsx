@@ -4,8 +4,12 @@ import NedWalletDemo from "@/components/NedWalletDemo";
 import NedScrollEffects from "@/components/NedScrollEffects";
 import Link from "next/link";
 import "./ned.css";
-import "./ned-motion.css";
+import "../../portfolio-home.css";
+import "./ned-editorial.css";
+import Atmosphere from "@/components/Atmosphere";
+import SectionMay from "@/components/SectionMay";
 
+import NedArchitecture from "@/components/NedArchitecture";
 import NedHeader from "@/components/NedHeader";
 
 export default function NedCaseStudy() {
@@ -13,18 +17,20 @@ export default function NedCaseStudy() {
 
   return (
     <MotionProvider>
+      <div className="portfolio-v2 ned-editorial">
       <a className="skip" href="#ned-chapter-2">Skip to interactive demo</a>
       <NedHeader />
       <NedScrollEffects />
       <main>
         <section className="case-hero" id="ned-chapter-0">
+          <Atmosphere />
           <div className="hero-text">
-            <p className="eyebrow">CASE STUDY 01 / UNIHACKFEST 2026</p>
+            <p className="eyebrow">PRODUCT NOTES / 2026</p>
             <div className="badges">
               <span>IN DEVELOPMENT</span>
               <span>PROJECT OWNER</span>
             </div>
-            <h1>A simpler<br />way into <em>Web3.</em></h1>
+            <p className="ned-product-name">N.E.D Wallet</p><h1>Familiar money.<br /><em>New possibilities.</em></h1>
             <p className="lead">N.E.D Wallet brings familiar money interactions to Solana: Google sign-in, USDC transfers, and an approachable way to explore tokenized stocks.</p>
             <div className="hero-actions">
               <a className="button lime" href="#ned-chapter-2">Try the prototype <span>↗</span></a>
@@ -44,7 +50,7 @@ export default function NedCaseStudy() {
           </div>
         </section>
         
-        <section className="story-section" id="ned-chapter-1">
+        <section className="story-section" id="ned-chapter-1"><span id="story" className="ned-anchor" />
           <div className="section-top">
             <p className="eyebrow">01 / THE PRODUCT QUESTION</p>
             <h2>What if the first step<br />felt <em>familiar?</em></h2>
@@ -57,6 +63,7 @@ export default function NedCaseStudy() {
               <p className="small-note">Development snapshot: 28 September 2026 · Repository commit <code>68e5cc7</code>. Product capabilities may evolve.</p>
             </div>
           </div>
+          <SectionMay place="products" preview="the product direction" />
           <div className="principles">
             <article>
               <span>01</span>
@@ -82,7 +89,7 @@ export default function NedCaseStudy() {
           <div className="section-top">
             <p className="eyebrow">03 / A DISTINCT PRODUCT IDENTITY</p>
             <h2>Calm surfaces.<br /><em>A little personality.</em></h2>
-            <p>N.E.D's purple identity lives inside the project. The portfolio keeps its own lime palette and Mây companion.</p>
+            <p>N.E.D's purple identity lives inside the project. The portfolio frames it with quiet ivory surfaces and Mây as your companion.</p>
           </div>
           <div className="design-strip">
             <div className="swatch purple">
@@ -164,26 +171,9 @@ export default function NedCaseStudy() {
         <section className="engineering-section" id="ned-chapter-5">
           <p className="eyebrow">05 / UNDER THE INTERFACE</p>
           <h2>Built around <em>Solana.</em></h2>
-          <div className="architecture" aria-label="N.E.D application architecture">
-            <div>
-              <small>EXPERIENCE</small>
-              <strong>React Native / Expo</strong>
-              <span>TypeScript · Expo Router · Zustand</span>
-            </div>
-            <span aria-hidden="true">↓</span>
-            <div>
-              <small>IDENTITY & WALLET</small>
-              <strong>Dynamic + Anchor</strong>
-              <span>Google sign-in · Rust program · identity PDAs</span>
-            </div>
-            <span aria-hidden="true">↓</span>
-            <div>
-              <small>DATA & NETWORK</small>
-              <strong>Helius / Jupiter</strong>
-              <span>Devnet transfers · Mainnet read-only pricing</span>
-            </div>
-          </div>
-          <p className="engineering-note">Reanimated, i18next and React Native SVG support the interface. GeckoTerminal supplies chart data and SNS resolves .sol names. The current product is an Expo application; it is separate from the portfolio's proposed Next.js migration.</p>
+          <p className="engineering-note">Follow an action through the system. Choose a flow, explore each layer, or play a sequence to see how information moves.</p>
+          <NedArchitecture />
+          <p className="engineering-note">Reanimated, i18next and React Native SVG support the interface. GeckoTerminal supplies chart data and SNS resolves .sol names. The current product is an Expo application; it is separate from the portfolio’s Next.js website.</p>
           <div className="source-links">
             <a className="button" href="https://github.com/Tdat10052499/Unihackfest-2026" target="_blank" rel="noopener noreferrer">Explore the repository ↗</a>
             <a className="text-link" href="https://github.com/Tdat10052499/Unihackfest-2026/blob/68e5cc7fb6a990d8e2fdddbd470a25f2e02a76c7/docs/02-thiet-ke/ui-pdf-alignment.md" target="_blank" rel="noopener noreferrer">Read implementation notes ↗</a>
@@ -194,7 +184,7 @@ export default function NedCaseStudy() {
           <p className="eyebrow">06 / WHAT COMES NEXT</p>
           <h2>Keep testing.<br /><em>Keep making it clearer.</em></h2>
           <p>The next milestone is confidence in the core experience: clear transaction states, consistent sample/live-data labels, and validation on real devices. This case study will grow with the product.</p>
-          <Link className="button lime" href="/#contact">Talk about the project ↗</Link>
+          <Link className="button lime" href="/#contact">Talk about the project ↗</Link><SectionMay place="contact" />
         </section>
       </main>
 
@@ -202,6 +192,7 @@ export default function NedCaseStudy() {
         <Link href="/">← Teichi D. portfolio</Link>
         <span>N.E.D / UniHackfest 2026 / In development</span>
       </footer>
+    </div>
     </MotionProvider>
   );
 }
