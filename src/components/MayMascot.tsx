@@ -82,8 +82,7 @@ export default function MayMascot() {
         
         // Temporarily apply/remove classes to calculate after rect
         shell.classList.toggle("docked", isDocked);
-        const parent = isDocked ? document.body : document.querySelector(".mascot-stage");
-        if (parent) parent.appendChild(shell);
+        // Keep the element in React's tree; fixed positioning handles docking.
         
         const after = shell.getBoundingClientRect();
         

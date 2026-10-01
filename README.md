@@ -64,3 +64,7 @@ The complete interactive reference is isolated in `handoff/ned-reference/`. It d
 
 Preview the reference: `cd handoff/ned-reference` then `npm start` and open `http://localhost:4173/ned.html`. The new case study has not yet been integrated into the Next.js routes.
 
+
+## Latest design handoff
+
+See [DESIGN_HANDOFF.md](DESIGN_HANDOFF.md) for the new homepage and [WORKSPACE_PROMPT.md](WORKSPACE_PROMPT.md) for workspace integration instructions. Source branch: `feat/portfolio-products-research`.
