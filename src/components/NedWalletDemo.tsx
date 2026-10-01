@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
-import MayCompanion from "./MayCompanion";
-import { useMotion } from "./MotionProvider";
+import React, { useState } from "react";
+import Image from "next/image";
+import SectionMay from "./SectionMay";
+
 
 const assets = {
   AAPLx: { name: 'Apple token', price: 243.42, icon: 'A' },
@@ -18,30 +19,27 @@ export default function NedWalletDemo() {
   const [side, setSide] = useState<'buy'|'sell'>('buy');
   const [stage, setStage] = useState<'home'|'amount'|'review'|'success'>('home');
   const [amountStr, setAmountStr] = useState('50');
-  const [receipt, setReceipt] = useState<any>(null);
+  const [receipt, setReceipt] = useState<{cents:number;fee:number;quantity:number;side:'buy'|'sell';symbol:'AAPLx'|'NVDAx'} | null>(null);
   
-  const [mayMode, setMayMode] = useState("auto");
-  const [mayMood, setMayMood] = useState("idle");
+  const [mayMood, setMayMood] = useState<"idle" | "happy" | "thinking" | "coding">("coding");
   const [mayMessage, setMayMessage] = useState("Start with an asset. I’ll walk you through it.");
-  const [transientUntil, setTransientUntil] = useState(0);
   const [isMinimized, setIsMinimized] = useState(false);
 
-  const { motion, setChapter } = useMotion();
 
-  const handleReact = (mood: string, message: string) => {
+  const handleReact = (mood: typeof mayMood, message: string) => {
     setMayMood(mood);
     setMayMessage(message);
-    setTransientUntil(performance.now() + 6000);
   };
 
   const go = (next: 'home'|'amount'|'review'|'success') => {
     setStage(next);
+    if (next === "review") setAckChecked(false);
     const messages = {
       home: ['coding', 'Choose a token to explore. Everything here is sample data.'],
       amount: ['coding', 'Try an amount. I’ll help you check the sample balance.'],
       review: ['thinking', 'Check the quantity and sample fee before confirming.'],
       success: ['happy', 'Done! Only the sample ledger changed.']
-    };
+    } as const;
     handleReact(messages[next][0], messages[next][1]);
   };
 
@@ -118,11 +116,11 @@ export default function NedWalletDemo() {
   const quote = getQuote();
 
   return (
-    <section className="demo-section" id="ned-chapter-2">
+    <section className="demo-section" id="ned-chapter-2"><span id="demo" className="ned-anchor" />
       <div className="demo-intro">
         <p className="eyebrow">02 / TRY THE EXPERIENCE</p>
         <h2>Your first<br /><em>sample investment.</em></h2>
-        <p>Explore a portfolio, review a purchase, then sell part of a holding. This small walkthrough is inspired by N.E.D's xStocks design.</p>
+        <p>Explore a portfolio, review a purchase, then sell part of a holding. This small walkthrough is inspired by N.E.D’s xStocks design.</p>
         <p className="demo-disclaimer"><strong>Portfolio simulation only.</strong> Fixed sample prices and balances. No wallet connection, live quotes or transactions. Refreshing resets the session.</p>
         
         <ol className="demo-steps">
@@ -133,20 +131,7 @@ export default function NedWalletDemo() {
         </ol>
 
         <div className={`may-guide ${isMinimized ? 'is-minimized' : ''}`}>
-          <MayCompanion 
-            mode={mayMode} 
-            mood={mayMood} 
-            transientUntil={transientUntil}
-            chapter={stage === 'review' ? 'research' : 'work'} 
-          />
-          <div>
-            <span className="eyebrow">MÂY / YOUR GUIDE</span>
-            <p id="may-message" role="status">{mayMessage}</p>
-            <div className="may-actions">
-              <button type="button" onClick={() => handleReact('happy', 'Xin chào! A little wave from your cloud companion.')}>Say hello ♡</button>
-              <button type="button" onClick={() => handleReact('thinking', 'Check the quantity and sample fee before confirming.')}>Mây’s note</button>
-            </div>
-          </div>
+          {!isMinimized && <SectionMay place="demo" mood={mayMood} message={mayMessage} />}
           <button className="may-collapse" type="button" aria-expanded={!isMinimized} aria-label={isMinimized ? 'Expand Mây guide' : 'Minimize Mây guide'} onClick={() => setIsMinimized(!isMinimized)}>{isMinimized ? '+' : '−'}</button>
         </div>
         <p className="small-note">Mây guides this portfolio. Teddy, the purple bear, belongs to N.E.D Wallet.</p>
@@ -230,7 +215,7 @@ export default function NedWalletDemo() {
           {stage === 'success' && receipt && (
             <>
               <div className="success">
-                <img src={`${process.env.NODE_ENV === 'production' ? '/teichi-portfolio' : ''}/assets/ned/teddy-happy.png`} alt="Teddy, N.E.D’s purple bear mascot, celebrates" />
+                <Image width={120} height={120} src={`${process.env.NODE_ENV === 'production' ? '/teichi-portfolio' : ''}/assets/ned/teddy-happy.png`} alt="Teddy, N.E.D’s purple bear mascot, celebrates" />
                 <p className="demo-caption">SAMPLE TRANSACTION COMPLETE</p>
                 <h3>{receipt.side === 'buy' ? 'Added to' : 'Sold from'} your<br />practice wallet.</h3>
                 <p>{receipt.quantity.toFixed(6)} {receipt.symbol} · {money(receipt.cents / 100)}</p>
@@ -240,7 +225,7 @@ export default function NedWalletDemo() {
                 <div><dt>Sample holding</dt><dd>{holdings[symbol].toFixed(6)} {symbol}</dd></div>
               </dl>
               <button className="button purple-button wide" onClick={() => go('home')}>Back to wallet →</button>
-              <button className="button wide" onClick={() => { setSide('sell'); setAmountStr((Math.floor(maxCents() / 2) / 100).toFixed(2)); go('amount'); }}>Try a sample sell</button>
+              <button className="button wide" onClick={() => { setSide('sell'); setAmountStr((Math.floor(holdings[symbol] * assets[symbol].price * 100 / 2) / 100).toFixed(2)); go('amount'); }}>Try a sample sell</button>
             </>
           )}
         </div>
