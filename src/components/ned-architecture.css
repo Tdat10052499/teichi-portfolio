@@ -1,0 +1,93 @@
+.ned-system{margin:45px 0 35px;border:1px solid #d8d6dc;border-radius:28px;background:#f0edf5;padding:30px;overflow:hidden}
+.ned-system-toolbar{display:flex;justify-content:space-between;gap:20px;align-items:center;flex-wrap:wrap}
+.ned-system-toolbar>div{display:flex;gap:6px;flex-wrap:wrap}
+.ned-system button{font:inherit;cursor:pointer}
+.ned-system-toolbar button,.ned-system-controls button{border:1px solid #cec4db;background:transparent;color:#5d486f;border-radius:99px;padding:12px 18px;font-size:12px;min-height:44px}
+.ned-system-toolbar button[aria-pressed=true]{background:#584269;color:white;border-color:#584269}
+.ned-system-toolbar>span,.ned-system-controls>span{font-size:9px;letter-spacing:1.3px;color:#756480}
+.ned-editorial .ned-system-summary{font-size:14px;max-width:750px;margin:24px 0 0}
+.ned-system-scene{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:36px;padding:65px 12px 30px;perspective:1100px;position:relative;background:radial-gradient(ellipse at 50% 65%,#c8b9dc40,transparent 65%)}
+.ned-node-slot{position:relative;min-width:0;perspective:800px}
+.ned-system .ned-node{position:relative;display:flex;align-items:center;flex-direction:column;width:100%;border:0;background:transparent;padding:10px 2px 20px;transform-style:preserve-3d;color:#493a57;border-radius:18px}
+.ned-node-title{font-size:16px;font-weight:600;margin:30px 0 10px;text-align:center}
+.ned-node-tech{font-size:11px;color:#786d82;text-align:center;line-height:1.7;max-width:175px;min-height:40px}
+.ned-cube{display:block;width:94px;height:76px;background:linear-gradient(140deg,#cfc3e0,#b5a0cc);position:relative;transform:rotateX(12deg) rotateY(-20deg);transform-style:preserve-3d;border:1px solid #a691bf;box-shadow:12px 28px 24px #69507b20;transition:transform .45s,background .45s}
+.ned-cube:before{content:'';position:absolute;left:-1px;right:-1px;height:26px;top:-27px;background:#ece5f5;transform-origin:bottom;transform:skewX(-42deg);border:1px solid #b9a7cd}
+.ned-cube:after{content:'';position:absolute;width:24px;right:-26px;top:-1px;bottom:-1px;background:#9276ae;transform-origin:left;transform:skewY(-48deg);border:1px solid #a691bf}
+.ned-cube>span{display:grid;place-items:center;height:100%;font-size:27px;letter-spacing:-1px;color:#fff}
+.ned-node.is-active .ned-cube{background:linear-gradient(140deg,#966fb8,#644184);transform:rotateX(12deg) rotateY(-20deg) translateY(-10px);box-shadow:12px 35px 28px #69507b30}
+.ned-node.is-active .ned-node-title{color:#7439a2}
+.ned-node.is-passed .ned-cube{background:#879a76}
+.ned-data-link{position:absolute;left:calc(50% + 68px);right:calc(-50% + 33px);top:50px;height:2px;background:#c9bbd6;pointer-events:none}
+.ned-data-link b{position:absolute;right:-1px;top:-10px;color:#a08bb4;font-size:18px;font-weight:400}
+.ned-data-link i{position:absolute;width:8px;height:8px;border-radius:3px;top:-3px;left:0;background:#8c57b6;box-shadow:0 0 10px #9964c580;opacity:.4}
+.ned-data-link.is-active{background:#9878b2}
+.ned-system.is-running .ned-data-link.is-active i{animation:ned-packet 1.8s linear infinite;opacity:1}
+@keyframes ned-packet{0%{left:0;opacity:0}15%{opacity:1}85%{opacity:1}100%{left:100%;opacity:0}}
+.ned-system-controls{display:flex;justify-content:space-between;align-items:center;gap:15px;padding:18px 0;border-top:1px solid #d5cbdc}
+.ned-system-controls>div{display:flex;gap:8px}
+.ned-system-controls button:disabled{opacity:.45;cursor:default}
+.ned-system-detail{display:grid;grid-template-columns:1fr 1.8fr;gap:35px;background:#fbfafc;border:1px solid #ded5e6;border-radius:18px;padding:28px;min-height:180px}
+.ned-system-detail small{text-transform:uppercase;letter-spacing:1px;font-size:9px;color:#826894}
+.ned-editorial .ned-system-detail h3{font-size:25px;margin:12px 0}
+.ned-payload{font-size:11px;color:#6c8553;display:block}
+.ned-editorial .ned-system-detail p{margin:0;font-size:14px;color:#675a70}
+.ned-editorial .ned-system-note{font-size:10px;color:#7b7084;max-width:900px;margin:22px 0 0}
+@media(max-width:900px){.ned-system{padding:22px}.ned-system-scene{gap:12px;padding-inline:0}.ned-cube{width:65px;height:60px}.ned-node-title{font-size:14px}.ned-data-link{left:calc(50% + 47px);right:calc(-50% + 28px);top:43px}.ned-system-detail{grid-template-columns:1fr;gap:15px}}
+@media(max-width:600px){.ned-system{padding:20px 16px;border-radius:22px}.ned-system-toolbar button{padding:10px 12px;font-size:11px}.ned-system-scene{grid-template-columns:1fr;gap:35px;padding:45px 4px 25px}.ned-system .ned-node{display:grid;grid-template-columns:80px 1fr;column-gap:25px;text-align:left;padding:10px 10px 15px}.ned-cube{grid-row:1/3;width:58px;height:55px}.ned-node-title{margin:0;text-align:left;font-size:15px}.ned-node-tech{text-align:left;min-height:0;margin-top:8px}.ned-data-link{left:39px;right:auto;top:auto;bottom:-24px;width:2px;height:30px}.ned-data-link b{top:auto;bottom:-9px;right:-7px;rotate:90deg}.ned-data-link i{left:-3px;top:0}.ned-system.is-running .ned-data-link.is-active i{animation-name:ned-packet-mobile}.ned-system-controls{flex-wrap:wrap}.ned-system-detail{padding:20px}.ned-system-detail p{font-size:13px!important}}
+@keyframes ned-packet-mobile{0%{top:0;opacity:0}15%{opacity:1}85%{opacity:1}100%{top:100%;opacity:0}}
+.ned-editorial.quiet .ned-cube{transition:none}
+@media(prefers-reduced-motion:reduce){.ned-system *{animation:none!important;transition:none!important}}
+/* Modular wireframe studies: pale surfaces, precise edges, separated layers. */
+.ned-system{background:#f3f1f6;border-radius:24px}
+.ned-system-scene{gap:26px;padding:35px 0 28px;background:linear-gradient(90deg,transparent 49.8%,#b4a4c012 50%,transparent 50.2%),radial-gradient(ellipse at center,#dfd6e644,transparent 70%);background-size:32px 32px,auto}
+.ned-system .ned-node{border:1px solid #d8cfe1;background:#f9f7fb90;border-radius:2px;padding:18px 14px 20px;transition:border-color .35s,background .35s;transform-style:preserve-3d}
+.ned-system .ned-node.is-active{background:#eee8f4;border-color:#9f83b8}
+.ned-module-index{align-self:flex-start;font:9px monospace;letter-spacing:1px;color:#8b769c;border-bottom:1px solid #d9cfdf;width:100%;text-align:left;padding-bottom:12px}
+.ned-module-model{display:block;width:100%;height:190px;overflow:visible;stroke:#9b82b0;stroke-width:1;stroke-linejoin:round;transition:transform .6s}
+.ned-module-model .model-ground{stroke:#b5a5c4;opacity:.23;stroke-width:.6}
+.ned-module-model .model-face{fill:#e9e2f080;stroke:#9578ae}
+.ned-module-model .model-detail{stroke:#9570b5;opacity:.65;stroke-width:.8}
+.ned-module-model .model-shell{stroke-dasharray:3 3;opacity:.55}
+.ned-module-model .model-core .model-face{fill:#b89acc70}
+.ned-module-model .model-satellites{fill:#a980c3;stroke:#efe8f5}
+.ned-module-model .model-crosshair{stroke:#b5a7be;opacity:.55}
+.ned-module-model .model-layer,.ned-module-model .model-cell{transition:translate .65s cubic-bezier(.2,.7,.2,1)}
+.ned-node.is-active .model-layer.layer-0{translate:0 -9px}
+.ned-node.is-active .model-layer.layer-2{translate:0 8px}
+.ned-node.is-active .model-cell.cell-0{translate:0 -9px}
+.ned-node.is-active .model-cell.cell-2{translate:0 -4px}
+.ned-node.is-passed .model-core .model-face{fill:#b2c09b90}
+.ned-node-title{margin:8px 0 9px;font-size:15px;letter-spacing:-.3px}
+.ned-node-tech{font-size:10px;min-height:38px}
+.ned-data-link{left:100%;right:-26px;top:47%;z-index:2}
+.ned-data-link b{font-size:13px;top:-7px}
+.ned-editorial.has-motion .ned-node:hover .ned-module-model{transform:perspective(600px) rotateY(-9deg) rotateX(4deg) translateY(-4px)}
+.ned-editorial.has-motion .ned-node:hover .layer-0{translate:0 -13px}
+.ned-editorial.has-motion .ned-system.is-running .ned-node.is-active .model-core{animation:ned-core-pulse 1.8s ease-in-out infinite;transform-origin:110px 100px}
+@keyframes ned-core-pulse{50%{scale:1.08;opacity:.65}}
+.ned-editorial.quiet .ned-module-model,.ned-editorial.quiet .model-layer,.ned-editorial.quiet .model-cell{transition:none}
+@media(max-width:1050px) and (min-width:601px){.ned-system-scene{gap:16px}.ned-system .ned-node{padding:12px 7px}.ned-module-model{height:140px}.ned-data-link{right:-16px}.ned-node-title{font-size:12px}.ned-node-tech{font-size:9px}}
+@media(max-width:600px){.ned-system-scene{gap:30px;padding:28px 0}.ned-system .ned-node{display:grid;grid-template-columns:110px 1fr;column-gap:14px;padding:15px 12px}.ned-module-index{grid-column:1/-1;margin-bottom:10px;font-size:8px}.ned-module-model{grid-row:2/4;width:110px;height:115px}.ned-node-title{grid-column:2;margin:0;font-size:14px}.ned-node-tech{grid-column:2;font-size:10px;min-height:0}.ned-data-link{left:50%;right:auto;top:auto;bottom:-30px;height:30px}.ned-data-link b{bottom:-8px;top:auto;right:-6px}.ned-system .ned-module-model{overflow:visible}}
+/* Continuous model loops share the existing viewport-aware play/pause state. */
+.ned-system .model-0 .model-layer{animation:ned-layer-breathe 4.8s ease-in-out infinite;animation-delay:calc(var(--layer,0) * -.65s)}
+.ned-system .model-0 .layer-1{--layer:1}
+.ned-system .model-0 .layer-2{--layer:2}
+.ned-system .model-1 .model-layer{animation:ned-lid-float 5.6s ease-in-out infinite}
+.ned-system .model-1 .model-core,.ned-system .model-2 .model-core{animation:ned-core-breathe 4s ease-in-out infinite;transform-origin:110px 100px}
+.ned-system .model-2 .model-satellites{animation:ned-orbit-loop 12s linear infinite;transform-origin:110px 100px}
+.ned-system .model-3 .model-cell{animation:ned-cell-wave 4.8s ease-in-out infinite;animation-delay:calc(var(--cell,0) * -.38s)}
+.ned-system .cell-1{--cell:1}.ned-system .cell-2{--cell:2}.ned-system .cell-3{--cell:3}.ned-system .cell-4{--cell:4}
+.ned-editorial.has-motion .ned-system.is-running .ned-node.is-active .model-core{animation:ned-core-breathe 4s ease-in-out infinite}
+.ned-system .ned-data-link.is-active i{animation:ned-packet 3.2s linear infinite;opacity:1}
+.ned-system.is-running .ned-data-link.is-active i{animation-duration:3.2s}
+.ned-system .model-layer,.ned-system .model-core,.ned-system .model-satellites,.ned-system .model-cell,.ned-system .ned-data-link i{animation-play-state:paused!important}
+.ned-system.is-running .model-layer,.ned-system.is-running .model-core,.ned-system.is-running .model-satellites,.ned-system.is-running .model-cell,.ned-system.is-running .ned-data-link.is-active i{animation-play-state:running!important}
+.ned-editorial.quiet .ned-system .model-layer,.ned-editorial.quiet .ned-system .model-core,.ned-editorial.quiet .ned-system .model-satellites,.ned-editorial.quiet .ned-system .model-cell,.ned-editorial.quiet .ned-system .ned-data-link i{animation:none!important}
+@keyframes ned-layer-breathe{0%,100%{translate:0 0}50%{translate:0 -7px}}
+@keyframes ned-lid-float{0%,100%{translate:0 -2px}50%{translate:0 -13px}}
+@keyframes ned-core-breathe{0%,100%{scale:1;opacity:1}50%{scale:1.075;opacity:.7}}
+@keyframes ned-orbit-loop{to{rotate:360deg}}
+@keyframes ned-cell-wave{0%,100%{translate:0 0}45%{translate:0 -8px}}
+@media(max-width:600px){.ned-system .ned-data-link.is-active i{animation-name:ned-packet-mobile}}
+@media(prefers-reduced-motion:reduce){.ned-system *{animation:none!important;transition:none!important}}

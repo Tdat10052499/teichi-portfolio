@@ -10,8 +10,9 @@ const frames = {
   coding: [[85,1163,168,228],[341,1163,178,230],[610,1163,176,230],[881,1163,171,230]],
 };
 type Mood = keyof typeof frames;
-type Place = "hero" | "products" | "research" | "about" | "contact";
+type Place = "hero" | "products" | "research" | "about" | "contact" | "demo";
 const scenes: Record<Place,{mood:Mood;label:string;hint:string;reply:string;gesture:string}> = {
+  demo:{mood:"coding",label:"Say hello to your prototype guide",hint:"Choose an asset. This is a sample wallet.",reply:"Xin chào! Every action here changes sample data only.",gesture:"greet"},
   hero:{mood:"idle",label:"Say hello to Mây",hint:"A little curiosity. A little company. Tap to say hello.",reply:"Xin chào! Products or research — where shall we start?",gesture:"greet"},
   products:{mood:"coding",label:"Celebrate the prototype with Mây",hint:"I’m trying the prototype. Change a screen above and I’ll follow along.",reply:"One idea, one small step. Ready to try the sample demo?",gesture:"hop"},
   research:{mood:"thinking",label:"Ask Mây about the research question",hint:"A valid signature and a current version are two different questions. Ask me why.",reply:"A signature helps check authenticity. Version consistency asks whether the shards are up to date together. This is a concept explanation, not a research result.",gesture:"ponder"},
@@ -27,9 +28,9 @@ function getAtlas() {
   });
 }
 
-export default function SectionMay({place,preview}:{place:Place;preview?:string}) {
+export default function SectionMay({place,preview,mood,message}:{place:Place;preview?:string;mood?:Mood;message?:string}) {
   const {motion}=useMotion();
-  const scene=scenes[place];
+  const scene={...scenes[place],mood:mood??scenes[place].mood};
   const canvas=useRef<HTMLCanvasElement>(null);
   const button=useRef<HTMLButtonElement>(null);
   const [greeted,setGreeted]=useState(false);
@@ -77,6 +78,6 @@ export default function SectionMay({place,preview}:{place:Place;preview?:string}
       <span key={gesture} className={`may-gesture ${gesture?`gesture-${scene.gesture}`:""}`}><canvas ref={canvas} aria-hidden="true" />{failed&&<span className="may-fallback">☁</span>}</span>
       <span className="may-spark" aria-hidden="true">{place==="research"?"?":place==="products"?"{ }":"✧"}</span>
     </button>
-    <div className="section-may-note"><span className="section-may-label">MÂY / {place==="products"?"BUILDING":place==="research"?"WONDERING":place==="about"?"RECHARGING":place==="contact"?"SEE YOU SOON":"YOUR COMPANION"}</span><p id={`may-note-${place}`} aria-live="polite">{greeted?scene.reply:preview?`Now exploring ${preview}. These are sample screens — try switching the preview.`:scene.hint}</p><span className="may-action-hint">{place==="research"?"Tap to think together":"Tap Mây to interact"} ↗</span></div>
+    <div className="section-may-note"><span className="section-may-label">MÂY / {place==="products"?"BUILDING":place==="research"?"WONDERING":place==="about"?"RECHARGING":place==="contact"?"SEE YOU SOON":"YOUR COMPANION"}</span><p id={`may-note-${place}`} aria-live="polite">{greeted?scene.reply:message?message:preview?`Now exploring ${preview}. These are sample screens — try switching the preview.`:scene.hint}</p><span className="may-action-hint">{place==="research"?"Tap to think together":"Tap Mây to interact"} ↗</span></div>
   </div>;
 }
