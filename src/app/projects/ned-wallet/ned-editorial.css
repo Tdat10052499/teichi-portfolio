@@ -116,3 +116,19 @@ html:has(.ned-editorial){scroll-padding-top:76px}
 .ned-editorial .may-guide{display:block;max-width:540px}
 .ned-editorial .may-guide .section-may{margin:0;width:100%}
 .ned-editorial .may-at-demo .section-may-label{color:#73518b}
+
+/* Match the portfolio's exhibition rhythm while keeping the wallet demo's own UI. */
+.portfolio-v2.ned-editorial{--bg:#f2f4f1;--ink:#202623;--muted:#5a625e;--line:#c3cbc4;--accent:#234ae8;font-family:-apple-system,'Helvetica Neue',Helvetica,Arial,sans-serif}
+.ned-editorial h1,.ned-editorial h2,.ned-editorial h3{font-family:inherit;font-weight:400}
+.ned-editorial main>section{padding-inline:clamp(22px,4.5vw,96px);border-bottom:1px solid var(--line);border-radius:0}
+.ned-editorial .case-hero{background:var(--bg);grid-template-columns:1.25fr 1fr;min-height:90svh}
+.ned-editorial .case-hero h1{font-size:clamp(58px,6.6vw,130px)}
+.ned-editorial .case-hero h1 em{color:var(--accent)}
+.ned-editorial .case-hero .v2-atmosphere{display:none}
+.ned-editorial .button,.ned-editorial #motion,.ned-editorial .badges span{border-radius:0}
+.ned-editorial .button.lime{background:var(--accent);border-color:var(--accent)}
+.ned-editorial .ned-chapters{background:var(--bg);border-color:var(--line)}
+.ned-editorial .ned-chapters a[aria-current]{color:var(--accent)!important;border-color:var(--accent)}
+.ned-editorial h2{font-size:clamp(44px,6vw,108px);max-width:1200px}
+.ned-editorial .principles article,.ned-editorial .status-grid article{border-radius:0;box-shadow:none}
+@media(max-width:700px){.ned-editorial .case-hero{grid-template-columns:1fr;min-height:0}.ned-editorial .case-hero h1{font-size:clamp(48px,11vw,75px)}.ned-editorial h2{font-size:clamp(38px,9vw,64px)}}
