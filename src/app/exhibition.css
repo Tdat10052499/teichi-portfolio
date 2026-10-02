@@ -121,8 +121,7 @@ body:has(.exhibition){background:#f2f4f1}
 .exhibition .v2-hero-footer{grid-row:4;margin:0;padding-top:16px;font-size:10px}
 .exhibition .may-at-hero{grid-column:1/-1;grid-row:5;margin:0;width:auto;justify-self:end}
 .exhibition .may-at-hero .section-may-canvas{max-height:100px}
-.exhibit-chapters{position:fixed;top:auto;bottom:0;left:0;right:0;z-index:40;min-height:58px;padding-block:4px;background:var(--surface-paper);box-shadow:0 -1px 0 var(--line-ink)}
-.exhibit-chapters a{font-size:12px}
+
 .exhibit-prologue{position:relative;background:var(--surface-paper);border-top:1px solid var(--line-ink)}
 .prologue-stage{padding:120px var(--gutter);display:grid;grid-template-columns:1fr 2.3fr;column-gap:5vw;align-content:center;min-height:85svh}
 .prologue-credit{font-size:12px;line-height:1.5!important;margin-top:16px}
@@ -175,10 +174,12 @@ body:has(.exhibition){background:#f2f4f1}
 .exhibition .v2-contact .v2-button{border-color:var(--text-light);background:transparent}
 .exhibition .v2-contact .v2-kicker,.exhibition .v2-contact .section-may-note p,.exhibition .v2-contact .section-may-label,.exhibition .v2-contact .may-action-hint{color:var(--text-light)}
 .exhibition .v2-contact .section-may{align-self:flex-end}
-.exhibition .v2-footer{padding-bottom:100px}
+.exhibition .v2-footer{padding-bottom:160px}
 .exhibition .v2-products :focus-visible{outline-color:var(--text-light)}
 @media(min-width:1900px){.exhibition .idea-scene{top:9%}.exhibition .idea-object{scale:1.6}.exhibition .v2-hero>.v2-intro{font-size:16px}.exhibition .v2-product-stage{min-height:850px}.exhibition .v2-phone{width:270px}}
 @media(max-width:900px){
+ .exhibit-chapters{position:fixed;top:auto;bottom:0;left:0;right:0;z-index:40;min-height:58px;padding-block:4px;background:var(--surface-paper);box-shadow:0 -1px 0 var(--line-ink)}
+ .exhibit-chapters a{font-size:12px}
  .portfolio-v2.exhibition .v2-hero{grid-template-columns:1fr 1fr;min-height:0}
  .portfolio-v2.exhibition .v2-hero h1{font-size:13vw;padding-bottom:0}
  .exhibition .idea-scene{position:relative;left:auto;top:auto;width:100%;height:330px;grid-column:1;grid-row:3;overflow:hidden}
@@ -214,7 +215,7 @@ body:has(.exhibition){background:#f2f4f1}
  .exhibition .v2-concepts{grid-template-columns:1fr}.exhibition .v2-concept{padding:30px 0}.exhibition .v2-concept+.v2-concept{border-left:0;border-top:1px solid var(--line-dark)}
  .exhibition .v2-about{grid-template-columns:1fr;min-height:0;gap:40px}
  .portfolio-v2.exhibition .v2-about h2,.portfolio-v2.exhibition .v2-contact h2{font-size:clamp(45px,11vw,75px)}
- .exhibition .v2-contact{min-height:75svh}.exhibition .v2-footer{padding-bottom:100px}
+ .exhibition .v2-contact{min-height:75svh}.exhibition .v2-footer{padding-bottom:160px}
 }
 .portfolio-v2.exhibition{--accent:var(--surface-action);--ink:var(--text-ink);--soft:var(--text-muted);--edge:var(--line-ink);font-family:var(--font-ui)}
 .exhibition .prologue-track em{color:var(--surface-action)}
