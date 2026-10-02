@@ -3,7 +3,7 @@
 :HL["/teichi-portfolio/_next/static/media/5c285b27cdda1fe8-s.p.2_mbdogr7ni8i.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/teichi-portfolio/_next/static/chunks/1hj_lfzr5lrmd.css","style"]
 :HL["/teichi-portfolio/_next/static/chunks/1cmv4ur_sq7h5.css","style"]
-:HL["/teichi-portfolio/_next/static/chunks/34287k_99qny1.css","style"]
+:HL["/teichi-portfolio/_next/static/chunks/3x1bbendzmvfj.css","style"]
 :HL["/teichi-portfolio/assets/ned/design-xstocks.webp","image"]
 :HL["/teichi-portfolio/assets/ned/design-home.webp","image"]
-0:{"tree":{"name":"","param":null,"prefetchHints":4176,"slots":{"children":{"name":"projects","param":null,"prefetchHints":4192,"slots":{"children":{"name":"ned-wallet","param":null,"prefetchHints":4192,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":4256,"slots":null}}}}}}},"staleTime":300,"buildId":"ZyznFjDWCMXieUi29Pw2Q"}
+0:{"tree":{"name":"","param":null,"prefetchHints":4176,"slots":{"children":{"name":"projects","param":null,"prefetchHints":4192,"slots":{"children":{"name":"ned-wallet","param":null,"prefetchHints":4192,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":4256,"slots":null}}}}}}},"staleTime":300,"buildId":"PtXr07MTmBTE4zfDSlptQ"}
